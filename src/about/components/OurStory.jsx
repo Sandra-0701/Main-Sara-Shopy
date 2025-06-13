@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 
 export default function OurStory() {
   return (
@@ -29,7 +29,7 @@ export default function OurStory() {
           </p>
         </div>
         <div className="lg:w-1/2">
-          <Image
+          <img
             src="https://via.placeholder.com/600x400/28a745/FFFFFF?text=Our+Story"
             alt="Our Story"
             width={600}

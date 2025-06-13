@@ -5,7 +5,6 @@ import {
   FaInstagram,
   FaGithub,
 } from "react-icons/fa";
-import Image from "next/image";
 
 export default function OurTeam() {
   const teamMembers = [
@@ -68,7 +67,7 @@ export default function OurTeam() {
             className="bg-white rounded-lg shadow-sm p-5 text-center"
           >
             <div className="w-32 h-32 mx-auto mb-4 relative rounded-full overflow-hidden">
-              <Image
+              <img
                 src={`https://via.placeholder.com/150/28a745/FFFFFF?text=${member.name
                   .split(" ")
                   .map((n) => n[0])

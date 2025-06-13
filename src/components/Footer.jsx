@@ -19,11 +19,11 @@ const Footer = () => {
   // Footer sections data
   const footerSections = [
     {
-      id: "about",
-      title: "About Us",
+      id: "know-us",
+      title: "Know Us",
       links: [
-        { href: "/about", text: "Our Story" },
-        { href: "/team", text: "Our Team" },
+        { href: "/about", text: "About Us" },
+        { href: "/contact", text: "Contact Us" },
         { href: "/careers", text: "Careers" },
       ],
     },
@@ -51,7 +51,7 @@ const Footer = () => {
     <footer className="footer pt-5 bg-gradient-to-br from-[#1a1c23] to-[#242730] text-white">
       <div className="container mx-auto px-4">
         {/* Desktop and Tablet Footer (md and above) */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="hidden lg:grid lg:grid-cols-4 gap-6">
           {/* First 3 columns - Links */}
           {footerSections.map((section) => (
             <div key={section.id}>
@@ -102,7 +102,7 @@ const Footer = () => {
         </div>
 
         {/* Mobile Footer Accordion (sm and below) */}
-        <div className="md:hidden">
+        <div className="block lg:hidden">
           {/* Mobile Accordion Sections */}
           {footerSections.map((section) => (
             <div key={section.id} className="border-b border-gray-700 py-3">

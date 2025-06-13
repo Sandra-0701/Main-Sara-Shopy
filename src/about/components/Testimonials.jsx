@@ -1,4 +1,3 @@
-import Image from "next/image";
 
 export default function Testimonials() {
   const testimonials = [
@@ -48,7 +47,7 @@ export default function Testimonials() {
             </p>
             <div className="flex items-center">
               <div className="w-12 h-12 relative rounded-full overflow-hidden mr-4">
-                <Image
+                <img
                   src={`https://via.placeholder.com/50/28a745/FFFFFF?text=${testimonial.author
                     .split(" ")
                     .map((n) => n[0])

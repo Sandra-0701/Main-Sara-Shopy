@@ -88,7 +88,7 @@ export default function WishlistPage() {
 
   return (
     <div className="min-h-[calc(100vh-130px)] py-[30px]">
-      <div className="container">
+      <div className="mx-auto max-w-7xl px-4">
         <h1 className="text-[#020202] font-bold text-2xl mb-5">My Wishlist ({wishlistItems.length})</h1>
 
         {wishlistItems.length > 0 ? (

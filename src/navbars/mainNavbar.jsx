@@ -40,16 +40,17 @@ const MainNavbar = () => {
   return (
     <>
       {/* Desktop Navbar */}
-      <nav className="hidden sm:hidden md:hidden lg:flex px-3 items-center justify-between z-3 sticky top-0 h-[70px] bg-[#ffd400] border-b border-[#ffd400]">
-        <div className="logo">
-          <Link to="/">
-            <img
-              src="/img/navbar/sara logo-02.svg"
-              alt="Logo"
-              className="w-[150px] h-[120px] md:w-[200px] md:h-[100px]"
-            />
-          </Link>
-        </div>
+      <nav className="hidden sm:hidden md:hidden lg:flex px-3 items-center justify-between z-3 sticky top-0 h-[70px] bg-[#ffd400] border-b border-[#ffd400] z-20">
+        <div className="logo w-[150px] h-[120px] md:w-[200px] md:h-[100px] overflow-hidden flex items-center justify-center">
+  <Link to="/">
+    <img
+      src="/img/navbar/sara-new-logo.png"
+      alt="Logo"
+      className="w-full h-full object-contain"
+    />
+  </Link>
+</div>
+
         <div className="vertical-line border-l border-[#ffd400] h-full hidden md:block"></div>
         <div className="location hidden md:flex items-center gap-2">
           <HiLocationMarker className="text-xl" />
@@ -75,12 +76,16 @@ const MainNavbar = () => {
         >
           Login
         </button>
-        <button
-          className="btn bg-black text-white px-4 py-2 rounded-lg w-full md:w-auto my-2 md:my-0 flex items-center gap-2"
-          id="sara-cart-button"
-        >
-          <FaShoppingCart /> My Cart
-        </button>
+        <Link to="/cart">
+  <button
+    className="btn bg-black text-white px-4 py-2 rounded-lg w-full md:w-auto my-2 md:my-0 flex items-center gap-2 cursor-pointer"
+    id="sara-cart-button"
+  >
+    <FaShoppingCart /> My Cart
+  </button>
+</Link>
+
+
       </nav>
 
       {/* Login Modal */}

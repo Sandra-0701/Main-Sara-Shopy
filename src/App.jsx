@@ -3,16 +3,13 @@ import CategorySection from './components/CategorySection'
 import CardSlider from './components/CardSlider'
 import LocationModal from './components/LocationModal'
 import ProductSection from './components/ProductSection'
-
 import products from './data/products'
 import './index.css'
-import MainNavbar from './navbars/mainNavbar'
-import Footer from './components/Footer'
 function App() {
   
   return (
     <div className="">
-      <MainNavbar/>
+     
       <LocationModal />
 
       {/* Banner */}
@@ -41,8 +38,6 @@ function App() {
         title="Cold Drinks & Juices"
         products={products["Cold Drinks & Juices"]}
       />
-
-      <Footer/>
    
     </div>
     

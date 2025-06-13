@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([
@@ -173,12 +174,17 @@ const CartPage = () => {
                 </div>
               </div>
 
-              <button
-                className="w-full mt-6 bg-[#ffd400] text-black font-bold py-3 px-4 rounded-md hover:bg-[#ffdc33] transition shadow-md"
-                disabled={cartItems.length === 0}
-              >
-                Proceed to Checkout
-              </button>
+              <Link
+  to="/checkout"
+  className={cartItems.length === 0 ? "pointer-events-none w-full" : "w-full"}
+>
+  <button
+    className="w-full mt-6 bg-[#ffd400] text-black font-bold py-3 px-4 rounded-md hover:bg-[#ffdc33] transition shadow-md disabled:opacity-50 cursor-pointer"
+    disabled={cartItems.length === 0}
+  >
+    Proceed to Checkout
+  </button>
+</Link>
 
               <div className="mt-4 flex items-center justify-center gap-2">
                 <svg

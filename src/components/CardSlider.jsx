@@ -36,7 +36,7 @@ const CardSlider = () => {
 
   return (
     <div 
-      className="w-full py-8 relative"
+      className="container mx-auto p-4 lg:hidden"
       onMouseEnter={() => setAutoScroll(false)}
       onMouseLeave={() => setAutoScroll(true)}
     >
