@@ -11,11 +11,11 @@ const ProfilePage = () => {
   
   // Sample data
   const userInfo = {
-    name: "Alex Johnson",
-    email: "alex.johnson@example.com",
-    phone: "+1 (555) 123-4567",
-    address: "123 Main St, Apt 4B, New York, NY 10001",
-    joinDate: "January 2023"
+    name: "Sandra Suresh",
+    email: "san@example.com",
+    phone: "+91 98765 43210",
+    address: "kaloor, Kochi, Kerala",
+    joinDate: "January 2025"
   };
 
   const [formData, setFormData] = useState(userInfo);
@@ -23,7 +23,7 @@ const ProfilePage = () => {
   const orders = [
     {
       id: "ORD-78945",
-      date: "2023-05-15",
+      date: "2025-05-15",
       status: "Delivered",
       items: [
         { name: "Organic Bananas", quantity: 3, price: 2.99 },
@@ -34,7 +34,7 @@ const ProfilePage = () => {
     },
     {
       id: "ORD-78123",
-      date: "2023-04-02",
+      date: "2025-04-02",
       status: "Delivered",
       items: [
         { name: "Almond Milk", quantity: 1, price: 3.25 },
@@ -75,12 +75,11 @@ const ProfilePage = () => {
   };
 
   const handleSave = () => {
-    // In a real app, you would save to backend here
+   
     setEditMode(false);
   };
 
   const removeFromWishlist = (id) => {
-    // In a real app, you would update backend here
     console.log("Removed item", id);
   };
 

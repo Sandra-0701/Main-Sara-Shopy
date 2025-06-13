@@ -7,21 +7,21 @@ const AddressBook = () => {
     {
       id: 1,
       name: 'Home',
-      street: '123 Main St, Apt 4B',
-      city: 'New York',
-      state: 'NY',
-      zipCode: '10001',
-      phone: '+1 (555) 123-4567',
+      street: 'Kaloor',
+      city: 'Kochi',
+      state: 'Kerala',
+      zipCode: '682106',
+      phone: '+91 12345 67890',
       isDefault: true
     },
     {
       id: 2,
       name: 'Work',
-      street: '456 Business Ave, Floor 10',
-      city: 'New York',
-      state: 'NY',
-      zipCode: '10001',
-      phone: '+1 (555) 987-6543',
+      street: 'Kaloor',
+      city: 'Kochi',
+      state: 'Kerala',
+      zipCode: '682017',
+      phone: '+91 98765 43210',
       isDefault: false
     }
   ]);
