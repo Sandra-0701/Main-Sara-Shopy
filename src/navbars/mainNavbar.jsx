@@ -51,7 +51,7 @@ const MainNavbar = () => {
   </Link>
 </div>
 
-        <div className="vertical-line border-l border-[#ffd400] h-full hidden md:block"></div>
+       
         <div className="location hidden md:flex items-center gap-2">
           <HiLocationMarker className="text-xl" />
           <div>
