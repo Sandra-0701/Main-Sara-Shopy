@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CheckoutPage = () => {
   const [cartItems, setCartItems] = useState([
@@ -29,18 +29,17 @@ const CheckoutPage = () => {
     },
   ]);
 
-  const [activeStep, setActiveStep] = useState(1); // 1: Shipping, 2: Payment, 3: Review
+  const [activeStep, setActiveStep] = useState(1);
   const [shippingInfo, setShippingInfo] = useState({
     firstName: "",
     lastName: "",
     address: "",
     city: "",
     state: "",
-    zipCode: "",
+    postalCode: "",
     phone: "",
     email: "",
   });
-  const [paymentMethod, setPaymentMethod] = useState("credit");
   const [orderPlaced, setOrderPlaced] = useState(false);
 
   const subtotal = cartItems.reduce(
@@ -133,9 +132,9 @@ const CheckoutPage = () => {
               </div>
             </div>
             <Link to="/">
-            <button className="mt-6 bg-[#ffd400] text-black font-medium py-2 px-6 rounded-md hover:bg-[#ffdc33] transition cursor-pointer">
-              Continue Shopping
-            </button>
+              <button className="mt-6 bg-[#ffd400] text-black font-medium py-2 px-6 rounded-md hover:bg-[#ffdc33] transition cursor-pointer">
+                Continue Shopping
+              </button>
             </Link>
           </div>
         </div>
@@ -303,16 +302,16 @@ const CheckoutPage = () => {
                     </div>
                     <div>
                       <label
-                        htmlFor="zipCode"
+                        htmlFor="postalCode"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        ZIP Code
+                        Postal Code
                       </label>
                       <input
                         type="text"
-                        id="zipCode"
-                        name="zipCode"
-                        value={shippingInfo.zipCode}
+                        id="postalCode"
+                        name="postalCode"
+                        value={shippingInfo.postalCode}
                         onChange={handleShippingChange}
                         className="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-black focus:border-black"
                         required
@@ -363,145 +362,38 @@ const CheckoutPage = () => {
             {activeStep === 2 && (
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-bold text-black mb-6">
-                  Payment Method
+                  Scan to Pay
                 </h2>
-                <div className="space-y-4">
-                  <div
-                    className={`border rounded-md p-4 cursor-pointer ${
-                      paymentMethod === "credit"
-                        ? "border-black bg-gray-50"
-                        : "border-gray-300"
-                    }`}
-                    onClick={() => setPaymentMethod("credit")}
-                  >
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="credit"
-                        name="paymentMethod"
-                        checked={paymentMethod === "credit"}
-                        onChange={() => setPaymentMethod("credit")}
-                        className="h-4 w-4 text-black focus:ring-black"
-                      />
-                      <label
-                        htmlFor="credit"
-                        className="ml-3 block text-sm font-medium text-black"
-                      >
-                        Credit/Debit Card
-                      </label>
-                    </div>
-                    {paymentMethod === "credit" && (
-                      <div className="mt-4 space-y-4">
-                        <div>
-                          <label
-                            htmlFor="cardNumber"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Card Number
-                          </label>
-                          <input
-                            type="text"
-                            id="cardNumber"
-                            placeholder="1234 5678 9012 3456"
-                            className="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-black focus:border-black"
-                          />
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label
-                              htmlFor="expiry"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Expiry Date
-                            </label>
-                            <input
-                              type="text"
-                              id="expiry"
-                              placeholder="MM/YY"
-                              className="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-black focus:border-black"
-                            />
-                          </div>
-                          <div>
-                            <label
-                              htmlFor="cvv"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              CVV
-                            </label>
-                            <input
-                              type="text"
-                              id="cvv"
-                              placeholder="123"
-                              className="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-black focus:border-black"
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <label
-                            htmlFor="cardName"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Name on Card
-                          </label>
-                          <input
-                            type="text"
-                            id="cardName"
-                            className="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-black focus:border-black"
-                          />
-                        </div>
-                      </div>
-                    )}
+                <div className="flex flex-col items-center">
+                  <div className="mb-6 p-4 bg-white border border-gray-200 rounded-lg">
+      
+                    <img
+                      src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://example.com/pay?amount=100"
+                      alt="Payment QR Code"
+                      className="w-64 h-64"
+                    />
                   </div>
-
-                  <div
-                    className={`border rounded-md p-4 cursor-pointer ${
-                      paymentMethod === "paypal"
-                        ? "border-black bg-gray-50"
-                        : "border-gray-300"
-                    }`}
-                    onClick={() => setPaymentMethod("paypal")}
-                  >
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="paypal"
-                        name="paymentMethod"
-                        checked={paymentMethod === "paypal"}
-                        onChange={() => setPaymentMethod("paypal")}
-                        className="h-4 w-4 text-black focus:ring-black"
-                      />
-                      <label
-                        htmlFor="paypal"
-                        className="ml-3 block text-sm font-medium text-black"
+                  <div className="text-center">
+                    <p className="text-lg font-medium text-black mb-2">
+                      Total Amount: ₹{total.toFixed(2)}
+                    </p>
+                    <p className="text-gray-600 mb-4">
+                      Scan the QR code using your preferred payment app to complete the transaction
+                    </p>
+                    <div className="flex items-center justify-center gap-2 text-gray-500">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
                       >
-                        PayPal
-                      </label>
-                    </div>
-                  </div>
-
-                  <div
-                    className={`border rounded-md p-4 cursor-pointer ${
-                      paymentMethod === "cod"
-                        ? "border-black bg-gray-50"
-                        : "border-gray-300"
-                    }`}
-                    onClick={() => setPaymentMethod("cod")}
-                  >
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="cod"
-                        name="paymentMethod"
-                        checked={paymentMethod === "cod"}
-                        onChange={() => setPaymentMethod("cod")}
-                        className="h-4 w-4 text-black focus:ring-black"
-                      />
-                      <label
-                        htmlFor="cod"
-                        className="ml-3 block text-sm font-medium text-black"
-                      >
-                        Cash on Delivery
-                      </label>
+                        <path
+                          fillRule="evenodd"
+                          d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span className="text-sm">Secure Payment</span>
                     </div>
                   </div>
                 </div>
@@ -525,7 +417,7 @@ const CheckoutPage = () => {
                     <p className="text-gray-800">{shippingInfo.address}</p>
                     <p className="text-gray-800">
                       {shippingInfo.city}, {shippingInfo.state}{" "}
-                      {shippingInfo.zipCode}
+                      {shippingInfo.postalCode}
                     </p>
                     <p className="text-gray-800">{shippingInfo.phone}</p>
                     <p className="text-gray-800">{shippingInfo.email}</p>
@@ -537,11 +429,7 @@ const CheckoutPage = () => {
                     Payment Method
                   </h3>
                   <div className="bg-gray-50 p-4 rounded-md">
-                    <p className="text-gray-800">
-                      {paymentMethod === "credit" && "Credit/Debit Card"}
-                      {paymentMethod === "paypal" && "PayPal"}
-                      {paymentMethod === "cod" && "Cash on Delivery"}
-                    </p>
+                    <p className="text-gray-800">QR Code Payment</p>
                   </div>
                 </div>
 

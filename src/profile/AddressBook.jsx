@@ -10,7 +10,7 @@ const AddressBook = () => {
       street: 'Kaloor',
       city: 'Kochi',
       state: 'Kerala',
-      zipCode: '682106',
+      postalCode: '682106',
       phone: '+91 12345 67890',
       isDefault: true
     },
@@ -20,7 +20,7 @@ const AddressBook = () => {
       street: 'Kaloor',
       city: 'Kochi',
       state: 'Kerala',
-      zipCode: '682017',
+      postalCode: '682017',
       phone: '+91 98765 43210',
       isDefault: false
     }

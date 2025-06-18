@@ -19,7 +19,7 @@ const AddressCard = ({ address, onEdit, onDelete, onSetDefault, isDefault }) => 
         </div>
       </div>
       <p className="mt-2 text-gray-700">{address.street}</p>
-      <p className="text-gray-700">{address.city}, {address.state} {address.zipCode}</p>
+      <p className="text-gray-700">{address.city}, {address.state} {address.postalCode}</p>
       <p className="mt-2 text-gray-700">Phone: {address.phone}</p>
       <div className="mt-4">
         {isDefault ? (

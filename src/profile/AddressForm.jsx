@@ -6,7 +6,7 @@ const AddressForm = ({ initialData, onSave, onCancel, isEditing }) => {
     street: '',
     city: '',
     state: '',
-    zipCode: '',
+    postalCode: '',
     phone: '',
     isDefault: false
   });
@@ -89,12 +89,12 @@ const AddressForm = ({ initialData, onSave, onCancel, isEditing }) => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              ZIP Code
+              Postal Code
             </label>
             <input
               type="text"
-              name="zipCode"
-              value={formData.zipCode}
+              name="PostalCode"
+              value={formData.postalCode}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-black focus:border-black"
               required
