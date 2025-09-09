@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { FiUser } from 'react-icons/fi';
 import {
@@ -37,6 +38,9 @@ const MainNavbar = () => {
     setIsRegisterModalOpen(false);
   };
 
+  const activeLink = "text-yellow-500";
+  const inactiveLink = "text-gray-400";
+
   return (
     <>
       {/* Desktop Navbar */}
@@ -44,7 +48,7 @@ const MainNavbar = () => {
         <div className="logo w-[150px] h-[120px] md:w-[200px] md:h-[100px] overflow-hidden flex items-center justify-center">
           <Link to="/">
             <img
-              src="/img/navbar/sara-new-logo.png"
+              src="/img/navbar/SaraShoppy-logo1.png"
               alt="Logo"
               className="w-full h-full object-contain"
             />
@@ -126,40 +130,81 @@ const MainNavbar = () => {
       <div className="fixed bottom-0 w-full bg-white border-t border-gray-200 lg:hidden z-50 shadow-lg">
       <div className="flex justify-around py-3 px-2">
         {/* Home Link */}
-        <Link 
+        <NavLink 
           to="/" 
-          className="flex flex-col items-center space-y-1 w-full active:scale-95 transition-transform"
+          end
+          className={({ isActive }) => 
+            `flex flex-col items-center space-y-1 w-full active:scale-95 transition-transform ${
+              isActive ? activeLink : inactiveLink
+            }`
+          }
         >
-          <IoMdHome className="text-2xl text-yellow-500" />
-          <span className="text-xs font-medium text-yellow-500">Home</span>
-        </Link>
+          {({ isActive }) => (
+            <>
+              <IoMdHome className="text-2xl" />
+              <span className={`text-xs font-medium ${isActive ? 'text-yellow-500' : 'text-gray-500'}`}>
+                Home
+              </span>
+            </>
+          )}
+        </NavLink>
 
         {/* Orders Link */}
-        <Link 
-          to="/orders" 
-          className="flex flex-col items-center space-y-1 w-full active:scale-95 transition-transform"
+        <NavLink 
+          to="/cart" 
+          className={({ isActive }) => 
+            `flex flex-col items-center space-y-1 w-full active:scale-95 transition-transform ${
+              isActive ? activeLink : inactiveLink
+            }`
+          }
         >
-          <MdShoppingBag className="text-2xl text-gray-400 hover:text-yellow-500 transition-colors" />
-          <span className="text-xs font-medium text-gray-500 hover:text-yellow-500 transition-colors">Orders</span>
-        </Link>
+          {({ isActive }) => (
+            <>
+              <MdShoppingBag className="text-2xl" />
+              <span className={`text-xs font-medium ${isActive ? 'text-yellow-500' : 'text-gray-500'}`}>
+                Cart
+              </span>
+            </>
+          )}
+        </NavLink>
 
         {/* Categories Link */}
-        <Link 
+        <NavLink 
           to="/categories" 
-          className="flex flex-col items-center space-y-1 w-full active:scale-95 transition-transform"
+          className={({ isActive }) => 
+            `flex flex-col items-center space-y-1 w-full active:scale-95 transition-transform ${
+              isActive ? activeLink : inactiveLink
+            }`
+          }
         >
-          <RiShapesFill className="text-2xl text-gray-400 hover:text-yellow-500 transition-colors" />
-          <span className="text-xs font-medium text-gray-500 hover:text-yellow-500 transition-colors">Categories</span>
-        </Link>
+          {({ isActive }) => (
+            <>
+              <RiShapesFill className="text-2xl" />
+              <span className={`text-xs font-medium ${isActive ? 'text-yellow-500' : 'text-gray-500'}`}>
+                Categories
+              </span>
+            </>
+          )}
+        </NavLink>
 
         {/* Account Link */}
-        <Link 
-          to="/account" 
-          className="flex flex-col items-center space-y-1 w-full active:scale-95 transition-transform"
+        <NavLink 
+          to="/profile" 
+          className={({ isActive }) => 
+            `flex flex-col items-center space-y-1 w-full active:scale-95 transition-transform ${
+              isActive ? activeLink : inactiveLink
+            }`
+          }
         >
-          <FiUser className="text-2xl text-gray-400 hover:text-yellow-500 transition-colors" />
-          <span className="text-xs font-medium text-gray-500 hover:text-yellow-500 transition-colors">Account</span>
-        </Link>
+          {({ isActive }) => (
+            <>
+              <FiUser className="text-2xl" />
+              <span className={`text-xs font-medium ${isActive ? 'text-yellow-500' : 'text-gray-500'}`}>
+                Profile
+              </span>
+            </>
+          )}
+        </NavLink>
       </div>
     </div>
 

@@ -2,8 +2,8 @@ import BannerImg from '/img/banner/banner8.jpeg';
 
 const Banner = () => {
   return (
-    <div className="container mx-auto p-4">
-      <div className="hidden lg:block relative w-full h-[420px]">
+    <div className="container mx-auto p-4 hidden lg:block">
+      <div className="relative w-full h-[420px]">
         <img
           src={BannerImg}
           alt="Banner"

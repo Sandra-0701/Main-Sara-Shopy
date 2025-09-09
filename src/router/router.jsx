@@ -12,6 +12,7 @@ import OrderHistory from "../order-history/orderHistory";
 import CheckoutPage from "../checkout/checkout";
 import AboutPage from "../about/about";
 import ProfilePage from "../profile/profile";
+import PrivacyPolicy from "../privacy/privacy";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <AboutPage />,
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicy />,
       },
     ],
   },

@@ -35,6 +35,7 @@ const ProductCard = ({ product }) => {
         <span className="text-sm font-bold">₹{product.price || "0"}</span>
         <div className="h-8 flex items-center">
           {quantity === 0 ? (
+            
             <button
               className="bg-white border border-[#ffd400] text-sm text-black px-3 py-1 rounded-md hover:bg-amber-50 transition-colors w-full"
               onClick={() => setQuantity(1)}

@@ -1,102 +1,149 @@
-import React from "react";
+import React, { useState } from "react";
+import { submitContactForm } from "../services/api"; 
 
 const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const result = await submitContactForm(formData);
+
+      if (result.success) {
+        setSubmitStatus('success');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(result.message || 'Submission failed');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage(error.message || 'Network error occurred');
+      console.error('Submission error:', error);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-black mb-4">
-            Contact Sara Shopy
-          </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Have questions about your grocery order or need assistance? Our team
-            is here to help you 24/7.
-          </p>
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="lg:w-2/3">
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h1 className="text-2xl font-bold text-black mb-6">Contact Us</h1>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Feedback Messages */}
+              {submitStatus === 'success' && (
+                <div className="p-3 mb-4 bg-green-100 text-green-700 rounded-md">
+                  Thank you! Your message has been sent successfully.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="p-3 mb-4 bg-red-100 text-red-700 rounded-md">
+                  {errorMessage || 'Failed to send message. Please try again.'}
+                </div>
+              )}
+
+              <div>
+                <label htmlFor="name" className="block text-black font-medium mb-1">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ffd400]"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-black font-medium mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ffd400]"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="subject" className="block text-black font-medium mb-1">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ffd400]"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-black font-medium mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ffd400]"
+                  rows={5}
+                  required
+                />
+              </div>
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className={`w-full bg-[#ffd400] text-black font-bold py-3 px-4 rounded-md hover:bg-[#ffdc33] transition shadow-md ${
+                  submitStatus === 'submitting' ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
+                disabled={submitStatus === 'submitting'}
+              >
+                {submitStatus === 'submitting' ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </span>
+                ) : (
+                  'Send Message'
+                )}
+              </button>
+            </form>
+          </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Contact Form */}
-          <div className="lg:w-2/3">
-            <div className="bg-white rounded-lg shadow-md p-6 sm:p-8">
-              <h2 className="text-xl font-bold text-black mb-6">
-                Send us a message
-              </h2>
-
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ffd400] focus:border-transparent"
-                      placeholder="Enter Your Name"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ffd400] focus:border-transparent"
-                      placeholder="Enter Your Email"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ffd400] focus:border-transparent"
-                    placeholder="Order inquiry"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Your Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ffd400] focus:border-transparent"
-                    placeholder="How can we help you?"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-[#ffd400] text-black font-bold py-3 px-4 rounded-md hover:bg-[#ffdc33] transition shadow-md"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
-          </div>
-
-          {/* Contact Info */}
-          <div className="lg:w-1/3">
+        {/* Contact Info */}
+        <div className="lg:w-1/3">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-8">
               <h2 className="text-xl font-bold text-black mb-6">
                 Contact Information
@@ -230,7 +277,6 @@ const ContactPage = () => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );
