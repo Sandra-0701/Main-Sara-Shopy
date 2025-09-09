@@ -187,7 +187,7 @@ password to anyone.
 6. GRIEVANCE OFFICER
 Zone Rider hereby appoints Zone Rider Support Manager as the grievance officer for the purposes of the rules
 drafted under the Information Technology Act, 2000, who may be contacted
-at support@zonerider.com. You may address any grievances you may have in respect of this privacy
+at shaisrider@gmail.com. You may address any grievances you may have in respect of this privacy
 policy or usage of your Protected Information or other data to him.`;
 
 export default function PrivacyPolicy() {
